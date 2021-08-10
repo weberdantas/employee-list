@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-import { Header, PageLoading, ListView, SearchInput, ModalItem } from '../../components';
+import {
+  Header,
+  PageLoading,
+  ListView,
+  SearchInput,
+  ModalItem,
+} from '../../components';
 import api from '../../service/api';
 
 const Home = () => {
@@ -11,6 +17,7 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [openModal, setOpenModal] = useState(false);
+  const [selected, setSelected] = useState({});
 
   const navigation = useNavigation();
 
@@ -23,8 +30,12 @@ const Home = () => {
       const filter = employees.filter(
         item =>
           String(item.email).includes(search.toLowerCase()) ||
-          String(item.name?.first).toLowerCase().includes(search.toLowerCase()) ||
-          String(item.name?.last).toLowerCase().includes(search.toLowerCase()) ||
+          String(item.name?.first)
+            .toLowerCase()
+            .includes(search.toLowerCase()) ||
+          String(item.name?.last)
+            .toLowerCase()
+            .includes(search.toLowerCase()) ||
           String(item.dob?.age).toLowerCase().includes(search.toLowerCase()),
       );
       setEmployees(filter);
@@ -62,11 +73,21 @@ const Home = () => {
             />
           </View>
           <View style={{ marginBottom: 40 }}>
-            <ListView data={employees} onSelectItem={() => setOpenModal(true)} />
+            <ListView
+              data={employees}
+              onSelectItem={value => {
+                setOpenModal(true);
+                setSelected(value);
+              }}
+            />
           </View>
         </>
       )}
-      <ModalItem open={openModal} item={{}} onClose={() => setOpenModal(false)} />
+      <ModalItem
+        open={openModal}
+        item={selected}
+        onClose={() => setOpenModal(false)}
+      />
     </View>
   );
 };

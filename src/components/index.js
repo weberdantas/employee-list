@@ -5,6 +5,7 @@ import PageLoading from './PageLoading';
 import ListView from './ListView';
 import SearchInput from './SearchInput';
 import ModalItem from './ModalItem';
+import SettingsItem from './SettingsItem';
 
 export {
   PrimaryButton,
@@ -14,4 +15,5 @@ export {
   ListView,
   SearchInput,
   ModalItem,
+  SettingsItem
 };

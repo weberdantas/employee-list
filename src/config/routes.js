@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-import { LandingPage, Home } from '../screens';
+import { LandingPage, Home, Settings } from '../screens';
 
 const Routes = () => {
   const Stack = createNativeStackNavigator();
@@ -29,7 +29,7 @@ const Routes = () => {
         />
         <Tabs.Screen
           name="Settings"
-          component={Home}
+          component={Settings}
           options={{
             tabBarIcon: ({ focused, color, size }) => (
               <Icon
